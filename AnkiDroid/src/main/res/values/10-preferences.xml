@@ -251,6 +251,8 @@
     
     <string name="type_in_answer_focus" maxLength="41">Focus ‘type in answer’</string>
     <string name="type_in_answer_focus_summ">Automatically focus the ‘type in answer’ field in the study screen</string>
+    <string name="type_answer_highlight">Type-in answer highlighting</string>
+    <string name="type_answer_highlight_summ">Highlight correct, incorrect, and missed characters when comparing typed answers</string>
 
     <!-- About -->
     <string name="open_changelog">Open changelog</string>

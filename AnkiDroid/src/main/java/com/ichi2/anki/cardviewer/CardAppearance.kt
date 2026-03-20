@@ -28,6 +28,7 @@ class CardAppearance(
     private val cardZoom: Int,
     private val imageZoom: Int,
     private val centerVertically: Boolean,
+    private val typeAnswerHighlight: Boolean,
 ) {
     /** Below could be in a better abstraction.  */
     fun appendCssStyle(style: StringBuilder) {
@@ -39,6 +40,15 @@ class CardAppearance(
         // Zoom images
         if (imageZoom != 100) {
             style.append("img { zoom: ${imageZoom / 100.0} }\n")
+        }
+
+        // Type-in answer highlighting
+        if (typeAnswerHighlight) {
+            style.append(".typeGood { background-color: #0f0 }\n")
+            style.append(".typeBad { background-color: #f00 }\n")
+            style.append(".typeMissed { background-color: #ccc }\n")
+            style.append(".night_mode .typeGood { background-color: #508040 }\n")
+            style.append(".night_mode .typeBad { background-color: #905050 }\n")
         }
     }
 
@@ -85,7 +95,8 @@ class CardAppearance(
             val cardZoom = preferences.getInt("cardZoom", 100)
             val imageZoom = preferences.getInt("imageZoom", 100)
             val centerVertically = preferences.getBoolean("centerVertically", false)
-            return CardAppearance(customFonts, cardZoom, imageZoom, centerVertically)
+            val typeAnswerHighlight = preferences.getBoolean("typeAnswerHighlight", true)
+            return CardAppearance(customFonts, cardZoom, imageZoom, centerVertically, typeAnswerHighlight)
         }
 
         fun fixBoldStyle(content: String): String {
